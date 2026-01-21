@@ -33,7 +33,7 @@ cp /path/to/ralph/prompt.md scripts/ralph/prompt.md    # For Amp
 # OR
 cp /path/to/ralph/CLAUDE.md scripts/ralph/CLAUDE.md    # For Claude Code
 # OR
-cp /path/to/ralph/COPILOT.md scripts/ralph/COPILOT.md  # For GitHub Copilot CLI
+cp /path/to/ralph/.github/copilot-instructions.md .github/copilot-instructions.md  # For GitHub Copilot CLI
 
 chmod +x scripts/ralph/ralph.sh
 ```
@@ -54,7 +54,11 @@ cp -r skills/prd ~/.claude/skills/
 cp -r skills/ralph ~/.claude/skills/
 ```
 
-For GitHub Copilot CLI, skills are not directly supported - use the COPILOT.md prompt file instead.
+For GitHub Copilot
+```bash
+cp -r skills/prd ~/.copilot/skills/
+cp -r skills/ralph ~/.copilot/skills/
+```
 
 ### Configure Amp auto-handoff (recommended)
 
@@ -122,7 +126,7 @@ Ralph will:
 | `ralph.sh` | The bash loop that spawns fresh AI instances (supports `--tool amp`, `--tool claude`, or `--tool copilot`) |
 | `prompt.md` | Prompt template for Amp |
 | `CLAUDE.md` | Prompt template for Claude Code |
-| `COPILOT.md` | Prompt template for GitHub Copilot CLI |
+| `.github/copilot-instructions.md` | Prompt template for GitHub Copilot CLI |
 | `prd.json` | User stories with `passes` status (the task list) |
 | `prd.json.example` | Example PRD format for reference |
 | `progress.txt` | Append-only learnings for future iterations |
@@ -172,7 +176,7 @@ Too big (split these):
 
 After each iteration, Ralph updates the relevant `AGENTS.md` files with learnings. This is key because AI coding tools automatically read these files, so future iterations (and future human developers) benefit from discovered patterns, gotchas, and conventions.
 
-Examples of what to add to AGENTS.md (or CLAUDE.md/COPILOT.md for tool-specific notes):
+Examples of what to add to AGENTS.md (or CLAUDE.md/.github/copilot-instructions.md for tool-specific notes):
 - Patterns discovered ("this codebase uses X for Y")
 - Gotchas ("do not forget to update Z when changing W")
 - Useful context ("the settings panel is in component X")
@@ -209,7 +213,7 @@ git log --oneline -10
 
 ## Customizing the Prompt
 
-After copying `prompt.md` (for Amp), `CLAUDE.md` (for Claude Code), or `COPILOT.md` (for GitHub Copilot CLI) to your project, customize it for your project:
+After copying `prompt.md` (for Amp), `CLAUDE.md` (for Claude Code), or `.github/copilot-instructions.md` (for GitHub Copilot CLI) to your project, customize it for your project:
 - Add project-specific quality check commands
 - Include codebase conventions
 - Add common gotchas for your stack
