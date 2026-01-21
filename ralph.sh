@@ -94,9 +94,9 @@ for i in $(seq 1 $MAX_ITERATIONS); do
     # Claude Code: use --dangerously-skip-permissions for autonomous operation, --print for output
     OUTPUT=$(claude --dangerously-skip-permissions --print < "$SCRIPT_DIR/CLAUDE.md" 2>&1 | tee /dev/stderr) || true
   else
-    # GitHub Copilot CLI: use --allow-all-tools for autonomous operation
+    # GitHub Copilot CLI: use --allow-all-tools and --allow-all-paths for autonomous operation
     PROMPT=$(cat "$SCRIPT_DIR/COPILOT.md")
-    OUTPUT=$(copilot -p "$PROMPT" --allow-all-tools 2>&1 | tee /dev/stderr) || true
+    OUTPUT=$(copilot -p "$PROMPT" --allow-all-tools --allow-all-paths --allow-all-urls 2>&1 | tee /dev/stderr) || true
   fi
   
   # Check for completion signal
